@@ -3,93 +3,143 @@ Projeto Final - VNW - CyberSec - Mai Wolf S/A
 
 <img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/c0dfbf53-4519-4d87-8f32-67a1b201f116" />
 
-# Relatório de Simulação de Engenharia Social 
+## Avaliação de Risco e Simulação de Engenharia Social (Phishing)
 
-**Cliente:** Mai Wolf S/A 
-
-**Setor:** Redes Sociais
-
-**Elaborado por:** Maiara Viegas – Analista de Segurança 
-
+**Cliente:** Mai Wolf S/A  
+**Setor:** Redes Sociais  
+**Elaborado por:** Maiara Viegas – Analista de Segurança  
 **Data:** 30/11/2025  
 
 ---
+
+## Sumário
+- Sumário Executivo  
+- Objetivo  
+- Escopo  
+- Metodologia  
+- Diagnóstico e Evidências  
+- Análise de Risco  
+- Proposta Técnica (Plano de Ação 80/20)  
+- Indicadores de Segurança  
+- Conclusão  
+
+---
+
 ## 1. Sumário Executivo
 
-Foi realizada uma simulação simples de ataque de Engenharia Social com foco em **phishing**, utilizando um ambiente controlado. O objetivo foi demonstrar como uma página falsa pode se parecer com uma página legítima e induzir um usuário iniciante a fornecer credenciais.
+Este relatório apresenta os resultados de uma **simulação controlada de ataque de engenharia social do tipo phishing**, realizada com o objetivo de avaliar o **risco humano** na postura de segurança da Mai Wolf S/A.
 
-A técnica usada foi a de **captura de credenciais**. A página falsa tinha aparência semelhante ao site original, demonstrando como usuários desatentos podem ser enganados facilmente.
+A simulação demonstrou que ataques simples, com baixo custo técnico, são suficientes para obter credenciais quando não existem controles de conscientização e validação por parte do usuário. O vetor explorado não foi uma falha tecnológica, mas sim o comportamento humano, hoje um dos principais pontos de falha em ambientes digitais.
 
-**Principais riscos identificados:**
-
-- Semelhança visual entre página verdadeira e falsa.  
-- Falta de verificação da URL antes de inserir dados.  
-- Exposição de credenciais ao acessar sites falsos.
+Com base no princípio **80/20**, o relatório propõe ações de alto impacto e baixo esforço, focadas em reduzir drasticamente a efetividade desse tipo de ataque sem necessidade de investimentos complexos em infraestrutura.
 
 ---
 
-## 2. Metodologia e Escopo
+## 2. Objetivo
 
-A simulação teve caráter educacional e buscou demonstrar conceitos básicos de phishing e engenharia social, com foco no entendimento do comportamento humano.
-
-**Escopo incluído:**
-
-- Criação de uma página fictícia para captura de credenciais de teste.  
-- Demonstração da interação da vítima simulada com o site falso.  
-- Observação dos erros cometidos no processo.
-
-**Observação:**  
-Nenhuma credencial real foi usada,assim como nenhum usuário real foi envolvido.
+Avaliar a exposição da Mai Wolf S/A a ataques de phishing por meio de uma simulação educacional e propor controles preventivos e corretivos que reduzam o risco de comprometimento de credenciais e acessos indevidos.
 
 ---
 
-## 3. Descrição da Simulação
+## 3. Escopo
 
-### 3.1. Configuração Inicial
+A simulação teve caráter educacional e analítico, sem impacto em usuários reais ou sistemas de produção.
 
-Foi montado um ambiente seguro para a atividade. Em seguida, foi criada uma página de login falsa com visual semelhante à página legítima, contendo campos básicos para e-mail e senha.
+### Inclui:
+- Simulação de phishing em ambiente controlado  
+- Análise do comportamento do usuário diante de uma página falsa  
+- Identificação dos principais erros humanos exploráveis  
+- Proposição de medidas preventivas priorizadas  
 
-### 3.2. Página Falsa para Coleta de Dados
+### Não inclui:
+- Uso de credenciais reais  
+- Envolvimento de usuários reais  
+- Ataques em ambientes produtivos
+------
 
-A página simulada replicava a estrutura visual de um site de login comum. O objetivo era apenas demonstrar como o phishing funciona na prática.
+## 4. Metodologia
 
-### 3.3. Acesso da Vítima (Simulada)
+A metodologia adotada seguiu quatro etapas:
 
-Durante a simulação:
+1. **Construção do cenário:** Criação de uma página falsa com aparência semelhante a um site legítimo de login.
+2. **Execução da simulação:** Interação de uma vítima simulada com o ambiente.  
+3. **Coleta de evidências:** Observação do fluxo de acesso e da captura de dados.
+4. **Análise de risco:** Avaliação do impacto potencial caso o ataque ocorresse em ambiente real.
 
-- A vítima fictícia acessou o endereço utilizado no laboratório.  
-- A página parecia legítima, então ela inseriu as credenciais de teste.  
-- Os dados foram capturados imediatamente no ambiente de simulação.  
-
-Isso demonstrou como um ataque básico pode ter sucesso quando o usuário não faz a validação de segurança.
-
----
-
-## 4. Análise de Risco Humano
-
-| Fator | Descrição |
-|-------|-----------|
-| **Confiança no visual** | A página falsa era semelhante à original, o que gerou confiança. |
-| **Não verificação da URL** | Esse foi o principal erro que permitiu o sucesso do phishing. |
-| **Familiaridade com o serviço** | Usuários tendem a confiar em sites conhecidos apenas pelo visual, sem verificar detalhes técnicos. |
-
-A simulação destacou a importância do comportamento do usuário na prevenção de ataques.
+A abordagem foi intencionalmente simples, refletindo a realidade da maioria dos ataques de phishing bem-sucedidos.
 
 ---
 
-## 5. Conclusão e Recomendações
+## 5. Diagnóstico e Evidências
 
-A simulação demonstrou que **o maior ponto fraco em ataques de phishing é o comportamento humano**. Mesmo ataques simples podem ser eficazes quando o usuário não verifica o endereço antes de digitar suas informações.
+A simulação evidenciou os seguintes pontos críticos:
 
-### Recomendações para usuários iniciantes
+- **Alta confiança no aspecto visual** da página  
+- **Ausência de verificação da URL** antes da inserção de credenciais  
+- **Falsa sensação de segurança** ao reconhecer a interface do serviço  
 
-- **Sempre conferir a URL** antes de inserir credenciais.  
-- **Evitar clicar em links inesperados**, especialmente solicitando login.  
-- **Ativar autenticação multifator (MFA)** para impedir acesso mesmo quando a senha é comprometida.  
-- **Utilizar gerenciadores de senhas**, que preenchem credenciais somente em sites legítimos.  
-- **Participar de treinamentos de conscientização** sobre phishing e ameaças básicas.  
-
-Essas práticas reduzem significativamente o risco de exposição a ataques de engenharia social.
+Esses fatores indicam que **o atacante não precisa explorar vulnerabilidades técnicas**, apenas reproduzir elementos visuais familiares ao usuário.
 
 ---
+
+## 6. Análise de Risco
+
+| Fator de Risco                     | Impacto | Probabilidade | Observação |
+|----------------------------------|---------|---------------|------------|
+| Comprometimento de credenciais   | Alto    | Alto          | Ataque simples e fácil de replicar |
+| Acesso indevido a contas         | Alto    | Médio         | Depende do nível de privilégio |
+| Escalada para outros sistemas    | Alto    | Médio         | Uso de credenciais reutilizadas |
+| Impacto reputacional             | Médio   | Médio         | Vazamento ou uso indevido de contas |
+
+**Conclusão do risco:**  
+O phishing representa um **risco crítico**, principalmente em ambientes que dependem fortemente de redes sociais e identidade digital.
+
+---
+
+## 7. Proposta Técnica – Plano de Ação (80/20)
+
+### 7.1 Quick Wins – 30 dias
+
+**Ação 1 – Conscientização objetiva sobre phishing**  
+Treinamento curto e prático, com exemplos reais de páginas falsas e URLs maliciosas.
+
+**Ação 2 – Implementação obrigatória de MFA**  
+Reduz drasticamente o impacto do comprometimento de senha.
+
+**Ação 3 – Política de verificação de links**  
+Orientação clara: nenhum login deve ser realizado a partir de links recebidos por mensagens ou e-mails.
+
+**Ação 4 – Uso de gerenciadores de senha**  
+Gerenciadores só preenchem credenciais em domínios legítimos, bloqueando phishing visual.
+
+---
+
+### 7.2 Controles Complementares (médio prazo)
+
+- Simulações periódicas de phishing educacional  
+- Canal simples para reporte de links suspeitos  
+- Inclusão do risco humano no programa de segurança  
+
+---
+
+## 8. Indicadores de Segurança (KPIs)
+
+- Taxa de usuários que identificam phishing em simulações  
+- Redução de cliques em links suspeitos  
+- Percentual de contas com MFA habilitado  
+- Tempo médio de resposta a incidentes reportados  
+
+Esses indicadores permitem medir a **maturidade do comportamento humano** ao longo do tempo.
+
+---
+
+## 9. Conclusão
+
+A simulação confirmou que **o fator humano continua sendo um dos maiores vetores de ataque**, mesmo em cenários com tecnologias adequadas.
+
+Pequenas ações, bem direcionadas, têm potencial de **reduzir significativamente o risco**, sem demandar investimentos elevados.
+
+Ao tratar engenharia social como um risco estratégico, e não apenas educacional, a Mai Wolf S/A fortalece sua postura de segurança e reduz a probabilidade de incidentes com impacto operacional e reputacional.
+
+
 
