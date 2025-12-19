@@ -12,134 +12,68 @@ Projeto Final - VNW - CyberSec - Mai Wolf S/A
 
 ---
 
-## Sumário
-- Sumário Executivo  
-- Objetivo  
-- Escopo  
-- Metodologia  
-- Diagnóstico e Evidências  
-- Análise de Risco  
-- Proposta Técnica (Plano de Ação 80/20)  
-- Indicadores de Segurança  
-- Conclusão  
-
----
-
 ## 1. Sumário Executivo
 
-Este relatório apresenta os resultados de uma **simulação controlada de ataque de engenharia social do tipo phishing**, realizada com o objetivo de avaliar o **risco humano** na postura de segurança da Mai Wolf S/A.
-
-A simulação demonstrou que ataques simples, com baixo custo técnico, são suficientes para obter credenciais quando não existem controles de conscientização e validação por parte do usuário. O vetor explorado não foi uma falha tecnológica, mas sim o comportamento humano, hoje um dos principais pontos de falha em ambientes digitais.
-
-Com base no princípio **80/20**, o relatório propõe ações de alto impacto e baixo esforço, focadas em reduzir drasticamente a efetividade desse tipo de ataque sem necessidade de investimentos complexos em infraestrutura.
+Este relatório detalha a simulação de um ataque de **Phishing de Credenciais**. O teste validou que a semelhança visual de páginas fraudulentas induz usuários à exposição de dados sensíveis. Para mitigar esse risco de forma escalável, esta proposta integra automação via Python para detecção precoce e uma arquitetura de **Defesa em Profundidade**, alinhada às melhores práticas de **Blue Team**.
 
 ---
 
 ## 2. Objetivo
 
-Avaliar a exposição da Mai Wolf S/A a ataques de phishing por meio de uma simulação educacional e propor controles preventivos e corretivos que reduzam o risco de comprometimento de credenciais e acessos indevidos.
+Avaliar a vulnerabilidade do fator humano e implementar mecanismos automatizados de resposta para garantir que credenciais capturadas não comprometam a integridade da infraestrutura da **Mai Wolf S/A**.
 
 ---
 
-## 3. Escopo
+## 3. Metodologia e Escopo
 
-A simulação teve caráter educacional e analítico, sem impacto em usuários reais ou sistemas de produção.
-
-### Inclui:
-- Simulação de phishing em ambiente controlado  
-- Análise do comportamento do usuário diante de uma página falsa  
-- Identificação dos principais erros humanos exploráveis  
-- Proposição de medidas preventivas priorizadas  
-
-### Não inclui:
-- Uso de credenciais reais  
-- Envolvimento de usuários reais  
-- Ataques em ambientes produtivos
-------
-
-## 4. Metodologia
-
-A metodologia adotada seguiu quatro etapas:
-
-1. **Construção do cenário:** Criação de uma página falsa com aparência semelhante a um site legítimo de login.
-2. **Execução da simulação:** Interação de uma vítima simulada com o ambiente.  
-3. **Coleta de evidências:** Observação do fluxo de acesso e da captura de dados.
-4. **Análise de risco:** Avaliação do impacto potencial caso o ataque ocorresse em ambiente real.
-
-A abordagem foi intencionalmente simples, refletindo a realidade da maioria dos ataques de phishing bem-sucedidos.
+- **Ambiente Controlado:** Criação de página fictícia para captura de credenciais de teste.
+- **Simulação:** Demonstração da interação da vítima com o site falso e observação de falhas na validação da URL.
+- **Automação:** Desenvolvimento de scripts em Python para monitoramento de logs de acesso e identificação de anomalias.
 
 ---
 
-## 5. Diagnóstico e Evidências
+## 4. Análise de Risco Humano e Diagnóstico
 
-A simulação evidenciou os seguintes pontos críticos:
+A simulação revelou que o maior ponto fraco é o comportamento do usuário diante de interfaces familiares.
 
-- **Alta confiança no aspecto visual** da página  
-- **Ausência de verificação da URL** antes da inserção de credenciais  
-- **Falsa sensação de segurança** ao reconhecer a interface do serviço  
-
-Esses fatores indicam que **o atacante não precisa explorar vulnerabilidades técnicas**, apenas reproduzir elementos visuais familiares ao usuário.
+- **Confiança Visual:** A réplica visual anulou a cautela técnica.
+- **Ausência de Verificação:** Falta de hábito em auditar a URL antes da inserção de dados.
+- **Ponto Único de Falha:** Dependência exclusiva de senha para acesso aos sistemas.
 
 ---
 
-## 6. Análise de Risco
+## 5. Proposta Técnica: Automação e Resposta (80/20)
 
-| Fator de Risco                     | Impacto | Probabilidade | Observação |
-|----------------------------------|---------|---------------|------------|
-| Comprometimento de credenciais   | Alto    | Alto          | Ataque simples e fácil de replicar |
-| Acesso indevido a contas         | Alto    | Médio         | Depende do nível de privilégio |
-| Escalada para outros sistemas    | Alto    | Médio         | Uso de credenciais reutilizadas |
-| Impacto reputacional             | Médio   | Médio         | Vazamento ou uso indevido de contas |
+Para elevar a postura de segurança, propõe-se a integração de ferramentas gerenciáveis pelo time de SRE.
+log_analize.py
+<img width="1142" height="514" alt="image" src="https://github.com/user-attachments/assets/5a5b8fb1-40de-40a1-aeff-80cfecb09803" />
 
-**Conclusão do risco:**  
-O phishing representa um **risco crítico**, principalmente em ambientes que dependem fortemente de redes sociais e identidade digital.
+### 5.1. Implementação de "Scripts de Defesa" (Python)
 
----
+Para reduzir a dependência da atenção do usuário, serão utilizados scripts para:
 
-## 7. Proposta Técnica – Plano de Ação (80/20)
+- **Monitoramento de Domínios:** Script Python que consome APIs de registro de domínios para alertar sobre novos endereços criados com o nome "Mai Wolf" (Typosquatting).
+- **Análise de Logs em Tempo Real:** Automação que lê logs do Nginx e identifica picos de acesso em rotas `/login` vindos de IPs suspeitos, com integração ao SIEM.
+- **Validação de MFA:** Script para auditar contas no Salesforce ou Google Workspace que ainda não possuem MFA obrigatório ativado.
 
-### 7.1 Quick Wins – 30 dias
+### 5.2. Plano de Ação – Quick Wins (30 dias)
 
-**Ação 1 – Conscientização objetiva sobre phishing**  
-Treinamento curto e prático, com exemplos reais de páginas falsas e URLs maliciosas.
-
-**Ação 2 – Implementação obrigatória de MFA**  
-Reduz drasticamente o impacto do comprometimento de senha.
-
-**Ação 3 – Política de verificação de links**  
-Orientação clara: nenhum login deve ser realizado a partir de links recebidos por mensagens ou e-mails.
-
-**Ação 4 – Uso de gerenciadores de senha**  
-Gerenciadores só preenchem credenciais em domínios legítimos, bloqueando phishing visual.
+- **MFA Obrigatório:** Implementação em todos os níveis de acesso.
+- **Gerenciadores de Senha:** Redução do risco de inserção de senhas em sites falsos, pois a ferramenta não reconhece URLs fraudulentas.
+- **Honeytokens:** Inserção de credenciais falsas em pontos estratégicos; caso um script Python detecte o uso dessas credenciais, um alerta de invasão é disparado imediatamente.
 
 ---
 
-### 7.2 Controles Complementares (médio prazo)
+## 6. Plano de Resposta a Incidentes (NIST Simplificado)
 
-- Simulações periódicas de phishing educacional  
-- Canal simples para reporte de links suspeitos  
-- Inclusão do risco humano no programa de segurança  
+Modelo de resposta rápida baseado no NIST:
 
----
-
-## 8. Indicadores de Segurança (KPIs)
-
-- Taxa de usuários que identificam phishing em simulações  
-- Redução de cliques em links suspeitos  
-- Percentual de contas com MFA habilitado  
-- Tempo médio de resposta a incidentes reportados  
-
-Esses indicadores permitem medir a **maturidade do comportamento humano** ao longo do tempo.
+- **Detecção:** Alerta via Slack disparado pelo script de monitoramento de logs.
+- **Contenção:** Automação para bloqueio do IP malicioso no WAF ou Firewall ao detectar brute-force ou phishing.
+- **Recuperação:** Reset de credenciais comprometidas e auditoria de tokens de sessão.
 
 ---
 
-## 9. Conclusão
+## 7. Conclusão
 
-A simulação confirmou que **o fator humano continua sendo um dos maiores vetores de ataque**, mesmo em cenários com tecnologias adequadas.
-
-Pequenas ações, bem direcionadas, têm potencial de **reduzir significativamente o risco**, sem demandar investimentos elevados.
-
-Ao tratar engenharia social como um risco estratégico, e não apenas educacional, a Mai Wolf S/A fortalece sua postura de segurança e reduz a probabilidade de incidentes com impacto operacional e reputacional.
-
-
-
+A segurança moderna exige que o erro humano seja previsto e mitigado por camadas tecnológicas. A combinação de conscientização do usuário com a automação via scripts em Python posiciona a **Mai Wolf S/A** em um patamar proativo de defesa, assegurando a continuidade do negócio e a proteção de dados.
